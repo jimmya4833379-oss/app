@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask + TinyDB 專案</title>
+    <!-- 引入自訂 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>專案初始化成功！</h1>
+        <p>這是一個純前端 (HTML/CSS/JS) 與 Flask 後端結合的架構。</p>
+        
+        <div class="status-card" id="api-status">
+            載入後端狀態中...
+        </div>
+    </div>
+
+    <!-- 引入自訂 JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
