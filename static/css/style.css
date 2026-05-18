@@ -1,34 +1,148 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
     color: #333;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
 .container {
     background: #fff;
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     max-width: 600px;
-    width: 90%;
+    width: 100%;
+    margin-top: 40px;
 }
 
 h1 {
     color: #2c3e50;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
 p {
     font-size: 1.1em;
     color: #7f8c8d;
     line-height: 1.6;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-section, .record-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+h2 {
+    font-size: 1.3em;
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+}
+
+.calorie-badge {
+    background: #e74c3c;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+}
+
+.diet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.diet-list li {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.record-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.record-time {
+    font-size: 0.8em;
+    color: #95a5a6;
+}
+
+.record-food {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.record-calorie {
+    font-weight: bold;
+    color: #e67e22;
 }
 
 .status-card {
@@ -39,6 +153,8 @@ p {
     border-radius: 4px;
     color: #16a085;
     font-weight: bold;
+    font-size: 0.9em;
+    text-align: center;
 }
 
 .status-error {
