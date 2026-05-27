@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const dietForm = document.getElementById('diet-form');
     const dietList = document.getElementById('diet-list');
     const totalCaloriesEl = document.getElementById('total-calories');
+    
+    const weightForm = document.getElementById('weight-form');
+    const bmiResult = document.getElementById('bmi-result');
 
     // 檢查後端狀態
     fetch('/api/status')
@@ -89,6 +92,38 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => console.error('Error posting record:', err));
     });
+
+    // 體重表單送出處理
+    if (weightForm) {
+        weightForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                height: document.getElementById('height').value,
+                weight: document.getElementById('weight').value
+            };
+
+            fetch('/api/weight', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // 顯示 BMI 結果
+                    bmiResult.style.display = 'block';
+                    bmiResult.innerHTML = `計算成功！您的 BMI 值為：<span style="color: #e74c3c; font-size: 1.2em;">${data.record.bmi}</span>`;
+                    weightForm.reset();
+                } else {
+                    alert(data.error || '紀錄失敗');
+                }
+            })
+            .catch(err => console.error('Error posting weight:', err));
+        });
+    }
 
     // 初始化載入
     loadDietRecords();

@@ -11,6 +11,7 @@ os.makedirs('database', exist_ok=True)
 # Initialize TinyDB
 db = TinyDB('database/db.json')
 diet_table = db.table('diet')
+weight_table = db.table('weight')
 
 # Mock 食物熱量字典 (每份大卡)
 MOCK_CALORIES = {
@@ -88,6 +89,33 @@ def handle_diet():
             "records": records,
             "totalCalories": total_calories
         })
+
+@app.route('/api/weight', methods=['POST'])
+def handle_weight():
+    data = request.json
+    try:
+        height = float(data.get('height'))
+        weight = float(data.get('weight'))
+    except (TypeError, ValueError):
+        return jsonify({"error": "請填寫正確的身高與體重數字"}), 400
+        
+    if height <= 0 or weight <= 0:
+        return jsonify({"error": "身高與體重必須大於 0"}), 400
+        
+    # 計算 BMI (體重 / 身高(公尺)的平方)
+    height_m = height / 100
+    bmi = round(weight / (height_m ** 2), 2)
+    
+    today = datetime.now().strftime('%Y-%m-%d')
+    record = {
+        "date": today,
+        "height": height,
+        "weight": weight,
+        "bmi": bmi
+    }
+    
+    weight_table.insert(record)
+    return jsonify({"status": "success", "message": "體重紀錄成功！", "record": record}), 201
 
 if __name__ == '__main__':
     app.run(debug=True)
